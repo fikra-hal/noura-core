@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contact Profile",
+  "description": "Schema for contact profile information",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact's email address"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Asia/Dubai",
+      "description": "Contact's timezone"
+    },
+    "name": {
+      "type": "string",
+      "description": "Contact's full name"
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "morningOnly": {
+          "type": "boolean",
+          "description": "Prefers morning meetings only"
+        },
+        "avoidDays": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Days to avoid for scheduling"
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes about the contact"
+    }
+  },
+  "required": ["email"],
+  "additionalProperties": false
+}

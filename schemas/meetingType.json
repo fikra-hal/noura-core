@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Meeting Type",
+  "description": "Schema for defining meeting types",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the meeting type"
+    },
+    "durationMinutes": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 45,
+      "description": "Duration of the meeting in minutes"
+    },
+    "location": {
+      "type": "string",
+      "enum": ["google_meet"],
+      "description": "Meeting location type"
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}
