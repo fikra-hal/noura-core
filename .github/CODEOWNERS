@@ -1,0 +1,7 @@
+# Default owner(s) for everything
+*   @fikra-hal
+
+# Fine-grained (optional)
+docs/      @fikra-hal
+schemas/   @fikra-hal
+src/       @fikra-hal
