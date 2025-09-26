@@ -19,7 +19,7 @@ jobs:
           node-version: '20.x'
           cache: 'pnpm'
 
-      # IMPORTANT: no "version" here, just use package.json's packageManager field
+      # IMPORTANT: do not set "version:" here; it will read from package.json "packageManager"
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
