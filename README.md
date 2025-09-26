@@ -59,6 +59,15 @@ src/
     └── settings.ts   # Configuration management
 ```
 
+## Features
+
+- ✅ **Identity Constants**: Centralized Noura identity management
+- ✅ **Type Safety**: Full TypeScript with strict configuration
+- ✅ **Environment Config**: Zod-validated settings with defaults
+- ✅ **Structured Logging**: Contextual logging with identity information
+- ✅ **Security First**: Least-privilege principles and secure defaults
+- ✅ **Modern Toolchain**: Node 20, pnpm, ESLint, Prettier
+
 ## Security
 
 This project follows least-privilege principles. See [SECURITY.md](SECURITY.md) for detailed security guidelines and practices.
