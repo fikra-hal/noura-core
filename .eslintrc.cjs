@@ -14,7 +14,10 @@ module.exports = {
   ],
   ignorePatterns: ['dist/', 'node_modules/'],
   rules: {
-    // keep CI green but still useful
+    // Allow require() until migrated to import
+    '@typescript-eslint/no-var-requires': 'off',
+
+    // Downgrade unused vars to warnings, ignore underscore-prefixed
     '@typescript-eslint/no-unused-vars': [
       'warn',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
