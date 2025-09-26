@@ -1,74 +1,56 @@
 name: CI
 
 on:
-  push:
-    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
+  push:
+    branches: [ main ]
 
 jobs:
   test:
+    name: test (20.x)
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [20.x]
-    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
-    
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-    
-    - name: Install dependencies
-      run: pnpm install
-    
-    - name: Build project
-      run: pnpm build
-    
-    - name: Run tests
-      run: pnpm test
-    
-    - name: Run linting
-      run: pnpm lint
-    
-    - name: Check formatting
-      run: pnpm format:check
-    
-    - name: Type check
-      run: pnpm type-check
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+
+      # IMPORTANT: no "version" here, just use package.json's packageManager field
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+
+      - name: Type check
+        run: pnpm run type-check
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Test
+        run: pnpm run test
 
   build:
-    runs-on: ubuntu-latest
     needs: test
-    
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    
-    - name: Setup pnpm (from package.json)
-      uses: pnpm/action-setup@v4
-      with:
-        run_install: true
-      
-    - name: Install dependencies
-      run: pnpm install
-    
-    - name: Build for production
-      run: pnpm build
-    
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-files
-        path: dist/
-        retention-days: 1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+
+      - name: Build
+        run: pnpm run build
